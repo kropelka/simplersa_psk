@@ -149,7 +149,6 @@ int handle_key_load() {
 
 
 int handle_key_generate() {
-	FILE* test_fileopen;
 	char * key_size_str, *priv_str, *publ_str, result;
 	newtComponent keygen_form = newtForm(NULL, NULL, 0);
 	newtComponent keygen_label = newtLabel(9, 1, "Oczekiwany rozmiar klucza: ");
