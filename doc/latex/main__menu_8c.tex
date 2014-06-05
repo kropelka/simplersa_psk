@@ -1,0 +1,57 @@
+\hypertarget{main__menu_8c}{\section{Dokumentacja pliku main\+\_\+menu.\+c}
+\label{main__menu_8c}\index{main\+\_\+menu.\+c@{main\+\_\+menu.\+c}}
+}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$newt.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$dirent.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+\subsection*{Definicje}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{main__menu_8c_ae688d728e1acdfe5988c7db45d6f0166}{P\+A\+T\+H\+\_\+\+M\+A\+X}~255
+\end{DoxyCompactItemize}
+\subsection*{Funkcje}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main__menu_8c_ab2be54ed4eadaef58647a7a9b809dafb}{filename\+\_\+dialog} (char $\ast$title, char $\ast$$\ast$selected\+\_\+file, char $\ast$directory)
+\item 
+int \hyperlink{main__menu_8c_ab3240eb4daecd191db902c6f6754c11c}{single\+\_\+choice\+\_\+menu} (int no\+\_\+pos, char $\ast$menu\+Items\mbox{[}$\,$\mbox{]}, char $\ast$menu\+Title)
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentacja definicji}
+\hypertarget{main__menu_8c_ae688d728e1acdfe5988c7db45d6f0166}{\index{main\+\_\+menu.\+c@{main\+\_\+menu.\+c}!P\+A\+T\+H\+\_\+\+M\+A\+X@{P\+A\+T\+H\+\_\+\+M\+A\+X}}
+\index{P\+A\+T\+H\+\_\+\+M\+A\+X@{P\+A\+T\+H\+\_\+\+M\+A\+X}!main\+\_\+menu.\+c@{main\+\_\+menu.\+c}}
+\subsubsection[{P\+A\+T\+H\+\_\+\+M\+A\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+T\+H\+\_\+\+M\+A\+X~255}}\label{main__menu_8c_ae688d728e1acdfe5988c7db45d6f0166}
+
+
+\subsection{Dokumentacja funkcji}
+\hypertarget{main__menu_8c_ab2be54ed4eadaef58647a7a9b809dafb}{\index{main\+\_\+menu.\+c@{main\+\_\+menu.\+c}!filename\+\_\+dialog@{filename\+\_\+dialog}}
+\index{filename\+\_\+dialog@{filename\+\_\+dialog}!main\+\_\+menu.\+c@{main\+\_\+menu.\+c}}
+\subsubsection[{filename\+\_\+dialog}]{\setlength{\rightskip}{0pt plus 5cm}void filename\+\_\+dialog (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{title, }
+\item[{char $\ast$$\ast$}]{selected\+\_\+file, }
+\item[{char $\ast$}]{directory}
+\end{DoxyParamCaption}
+)}}\label{main__menu_8c_ab2be54ed4eadaef58647a7a9b809dafb}
+proste okno do wyboru pliku do wczytania
+
+Kod jest dość zagmatwany ze względu na fakt, że wykorzystujemy wskaźniki z tablicy namelist również jako klucze do listy, którą wyświetlamy za pomocą Listboxa z N\+E\+W\+Ta. W wersji na Linuksa wypada zmienić sizedir na sizedir64, żeby nie pojawiały się problemy z plikami 2\+G\+B, akurat ten fragment kodu był pisany i testowany na Mac O\+S X, który w bibliotece standardowej ma tylko sizedir. \begin{DoxyRefDesc}{Do zrobienia}
+\item[\hyperlink{todo__todo000001}{Do zrobienia}]wstawić dynamiczne stringi z realokacją (a w zasadzie znaleźć do tego bibliotekę) 
+
+zrobić sensowniejsze określanie rozmiaru okna, trzeba by przed wywołaniem rekurencyjnym przelecieć katalog, do którego wchodzimy \end{DoxyRefDesc}
+\hypertarget{main__menu_8c_ab3240eb4daecd191db902c6f6754c11c}{\index{main\+\_\+menu.\+c@{main\+\_\+menu.\+c}!single\+\_\+choice\+\_\+menu@{single\+\_\+choice\+\_\+menu}}
+\index{single\+\_\+choice\+\_\+menu@{single\+\_\+choice\+\_\+menu}!main\+\_\+menu.\+c@{main\+\_\+menu.\+c}}
+\subsubsection[{single\+\_\+choice\+\_\+menu}]{\setlength{\rightskip}{0pt plus 5cm}int single\+\_\+choice\+\_\+menu (
+\begin{DoxyParamCaption}
+\item[{int}]{no\+\_\+pos, }
+\item[{char $\ast$}]{menu\+Items\mbox{[}$\,$\mbox{]}, }
+\item[{char $\ast$}]{menu\+Title}
+\end{DoxyParamCaption}
+)}}\label{main__menu_8c_ab3240eb4daecd191db902c6f6754c11c}
+menu pojedynczego wyboru
+
+wyświetla na ekranie nowe okno z listą możliwości do wyboru, zwraca numer wybranej przez użytkownika pozycji (zaczynając od zera). Uwaga\+: nie sprawdzamy, czy menu zmieści się na ekranie! 

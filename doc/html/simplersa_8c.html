@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.7"/>
+<title>SimpleRSA: Dokumentacja pliku simplersa.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">SimpleRSA
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">proste narzędzie do szyfrowania algorytmem RSA</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.8.7 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Szukaj');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Strona&#160;główna</span></a></li>
+      <li><a href="pages.html"><span>Dodatkowe&#160;strony</span></a></li>
+      <li class="current"><a href="files.html"><span>Pliki</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Szukaj" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;plików</span></a></li>
+      <li><a href="globals.html"><span>Globalne</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Pliki</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funkcje</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Zmienne</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Definicje</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Strony</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Definicje</a> &#124;
+<a href="#func-members">Funkcje</a> &#124;
+<a href="#var-members">Zmienne</a>  </div>
+  <div class="headertitle">
+<div class="title">Dokumentacja pliku simplersa.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>SimpleRSA, proste narzędzie do szyfrowania RSA.  
+<a href="#details">Więcej...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;gmp.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="rsa__keygen_8h_source.html">rsa_keygen.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="rsa__decode_8h_source.html">rsa_decode.h</a>&quot;</code><br />
+<code>#include &lt;menu.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="main__menu_8h_source.html">main_menu.h</a>&quot;</code><br />
+<code>#include &lt;locale.h&gt;</code><br />
+<code>#include &lt;form.h&gt;</code><br />
+<code>#include &lt;limits.h&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
+<code>#include &lt;newt.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Definicje</h2></td></tr>
+<tr class="memitem:a25f003de16c08a4888b69f619d70f427"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a25f003de16c08a4888b69f619d70f427">ARRAY_SIZE</a>(a)&#160;&#160;&#160;(sizeof(a)/sizeof(a[0]))</td></tr>
+<tr class="separator:a25f003de16c08a4888b69f619d70f427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funkcje</h2></td></tr>
+<tr class="memitem:a35d494e8cf30930557ac449187f7c301"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a35d494e8cf30930557ac449187f7c301">file_exists</a> (char *filename)</td></tr>
+<tr class="separator:a35d494e8cf30930557ac449187f7c301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a469a98901396d884483782947989a20f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a469a98901396d884483782947989a20f">show_main_screen</a> ()</td></tr>
+<tr class="separator:a469a98901396d884483782947989a20f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac76718b2972630c98182068206b30318"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#ac76718b2972630c98182068206b30318">handle_key_load_error_code</a> (int error_code, int key_type)</td></tr>
+<tr class="separator:ac76718b2972630c98182068206b30318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a749236584e9ec412cf06d14756a689"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a1a749236584e9ec412cf06d14756a689">handle_key_load</a> ()</td></tr>
+<tr class="separator:a1a749236584e9ec412cf06d14756a689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38ee2355624845de039a10114a106c50"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a38ee2355624845de039a10114a106c50">handle_key_generate</a> ()</td></tr>
+<tr class="separator:a38ee2355624845de039a10114a106c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a721971f42c7ab627a8b1aa3e911296b6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a721971f42c7ab627a8b1aa3e911296b6">handle_cipher</a> (int deciphering)</td></tr>
+<tr class="separator:a721971f42c7ab627a8b1aa3e911296b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Zmienne</h2></td></tr>
+<tr class="memitem:a22e6b8f8937e747141c4e1cb9f98b764"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a22e6b8f8937e747141c4e1cb9f98b764">nazwy_menu</a> []</td></tr>
+<tr class="separator:a22e6b8f8937e747141c4e1cb9f98b764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49e66e1521c905da6c24c0f4ffeb1cf5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a49e66e1521c905da6c24c0f4ffeb1cf5">key_loaded</a> = 0</td></tr>
+<tr class="separator:a49e66e1521c905da6c24c0f4ffeb1cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186a79c4138bb7f296a3ed5269b6220a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a186a79c4138bb7f296a3ed5269b6220a">public_key_loaded</a> =0</td></tr>
+<tr class="separator:a186a79c4138bb7f296a3ed5269b6220a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb7146e4344bc7c7aee4e25f5d856791"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#adb7146e4344bc7c7aee4e25f5d856791">private_key_loaded</a> = 0</td></tr>
+<tr class="separator:adb7146e4344bc7c7aee4e25f5d856791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6202bb3ec0e257e04ba4ac9e9f6b92b0"><td class="memItemLeft" align="right" valign="top">mpz_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a6202bb3ec0e257e04ba4ac9e9f6b92b0">n</a></td></tr>
+<tr class="separator:a6202bb3ec0e257e04ba4ac9e9f6b92b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e9841cad572137fe14a4d6462c4469a"><td class="memItemLeft" align="right" valign="top">mpz_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a4e9841cad572137fe14a4d6462c4469a">d</a></td></tr>
+<tr class="separator:a4e9841cad572137fe14a4d6462c4469a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61aae5341c97210088a1480fa6bc2db4"><td class="memItemLeft" align="right" valign="top">mpz_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a61aae5341c97210088a1480fa6bc2db4">e</a></td></tr>
+<tr class="separator:a61aae5341c97210088a1480fa6bc2db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a643a9297f0e17474b3a3cdbf90f20f6b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="simplersa_8c.html#a643a9297f0e17474b3a3cdbf90f20f6b">SPLASH</a> []</td></tr>
+<tr class="separator:a643a9297f0e17474b3a3cdbf90f20f6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opis szczegółowy</h2>
+<div class="textblock"><p>SimpleRSA, proste narzędzie do szyfrowania RSA. </p>
+<p>Projekt zaliczeniowy z przedmiotu Podstawy Programowania II. </p><dl class="section author"><dt>Autor</dt><dd>Karol Piotrowski </dd>
+<dd>
+Szczepan Lis </dd></dl>
+<dl class="section version"><dt>Wersja</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Data</dt><dd>2014 </dd></dl>
+</div><h2 class="groupheader">Dokumentacja definicji</h2>
+<a class="anchor" id="a25f003de16c08a4888b69f619d70f427"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ARRAY_SIZE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a</td><td>)</td>
+          <td>&#160;&#160;&#160;(sizeof(a)/sizeof(a[0]))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja funkcji</h2>
+<a class="anchor" id="a35d494e8cf30930557ac449187f7c301"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int file_exists </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a721971f42c7ab627a8b1aa3e911296b6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int handle_cipher </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>deciphering</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Główna logika aplikacji w zakresie szyfrowania</p>
+<dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deciphering</td><td>0 dla szyfrowania, 1 dla deszyfrowania </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Do zrobienia:</a></b></dt><dd>ulepszyć trochę file-dialog i umieścić go tutaj </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a38ee2355624845de039a10114a106c50"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int handle_key_generate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1a749236584e9ec412cf06d14756a689"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int handle_key_load </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac76718b2972630c98182068206b30318"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handle_key_load_error_code </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>error_code</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key_type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a469a98901396d884483782947989a20f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void show_main_screen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>wyświetlanie informacji o programie na root window</p>
+<p>Ze względu na doskonałą obsługę stringów w języku C oraz fakt, że toolkit NEWT nie posiada żadnego wyświetlania na ekranie przyjmującego string formatujący, wygląda to dosyć podejrzanie, ale z pewnością działa. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja zmiennych</h2>
+<a class="anchor" id="a4e9841cad572137fe14a4d6462c4469a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mpz_t d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a61aae5341c97210088a1480fa6bc2db4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mpz_t e</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a49e66e1521c905da6c24c0f4ffeb1cf5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int key_loaded = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6202bb3ec0e257e04ba4ac9e9f6b92b0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mpz_t n</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a22e6b8f8937e747141c4e1cb9f98b764"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* nazwy_menu[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wartość początkowa:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">  <span class="stringliteral">&quot;Generuj nowy klucz RSA&quot;</span>,</div>
+<div class="line">  <span class="stringliteral">&quot;Wczytaj klucz z pliku&quot;</span>,</div>
+<div class="line">  <span class="stringliteral">&quot;Szyfruj plik&quot;</span>,</div>
+<div class="line">  <span class="stringliteral">&quot;Deszyfruj plik&quot;</span>,</div>
+<div class="line">  <span class="stringliteral">&quot;Wyjście&quot;</span></div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="adb7146e4344bc7c7aee4e25f5d856791"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int private_key_loaded = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a186a79c4138bb7f296a3ed5269b6220a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int public_key_loaded =0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a643a9297f0e17474b3a3cdbf90f20f6b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* SPLASH[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wartość początkowa:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">  <span class="stringliteral">&quot; ____  _                 _      ____  ____    _&quot;</span>,</div>
+<div class="line">  <span class="stringliteral">&quot;/ ___|(_)_ __ ___  _ __ | | ___|  _ \\/ ___|  / \\&quot;</span>,</div>
+<div class="line">  <span class="stringliteral">&quot;\\___ \\| | &#39;_ ` _ \\| &#39;_ \\| |/ _ \\ |_) \\___ \\ / _ \\&quot;</span>,</div>
+<div class="line">  <span class="stringliteral">&quot; ___) | | | | | | | |_) | |  __/  _ &lt; ___) / ___ \\&quot;</span>,</div>
+<div class="line">  <span class="stringliteral">&quot;|____/|_|_| |_| |_| .__/|_|\\___|_| \\_\\____/_/   \\_\\&quot;</span>,</div>
+<div class="line">  <span class="stringliteral">&quot;                  |_|&quot;</span></div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Wygenerowano Cz, 5 cze 2014 05:50:22 dla SimpleRSA programem &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.7
+</small></address>
+</body>
+</html>

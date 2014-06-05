@@ -1,0 +1,147 @@
+\hypertarget{rsa__keygen_8c}{\section{Dokumentacja pliku rsa\+\_\+keygen.\+c}
+\label{rsa__keygen_8c}\index{rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}}
+}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$gmp.\+h$>$}\\*
+{\ttfamily \#include $<$fcntl.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include $<$curses.\+h$>$}\\*
+\subsection*{Definicje}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{rsa__keygen_8c_a911891ff47c98a13a6f45006b6ca1079}{N\+R\+\_\+\+T\+E\+S\+T\+S}~25  /$\ast$ liczba uzyc algorytmu Millera-\/Rabina $\ast$/
+\item 
+\#define \hyperlink{rsa__keygen_8c_a252aed5e043b7aa1c2d49e9bcbdc346a}{P\+L\+A\+I\+N\+T\+E\+X\+T\+\_\+\+B\+A\+S\+E}~16 /$\ast$ podstawa zapisu klucza w plaintekscie $\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Funkcje}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{rsa__keygen_8c_a65e31341ef3618368041f5dcbc45350f}{random\+\_\+prime} (mpz\+\_\+t $\ast$p, int bits)
+\item 
+unsigned int \hyperlink{rsa__keygen_8c_a945b3edafa39e73a602c77d0cd05d169}{random\+\_\+seed} ()
+\item 
+void \hyperlink{rsa__keygen_8c_a7a0574568c37d5b53c88eaa58248c6e7}{initialize\+\_\+generator} (int type\+\_\+of\+\_\+generator, unsigned int seed)
+\begin{DoxyCompactList}\small\item\em inicjalizacja generatora liczb losowych \end{DoxyCompactList}\item 
+void \hyperlink{rsa__keygen_8c_a5655e81417558c58b49555329934891e}{rsa\+\_\+keygen} (int no\+\_\+bits, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a6202bb3ec0e257e04ba4ac9e9f6b92b0}{n}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a4e9841cad572137fe14a4d6462c4469a}{d}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a61aae5341c97210088a1480fa6bc2db4}{e}, int long\+\_\+public)
+\begin{DoxyCompactList}\small\item\em generowanie klucza R\+S\+A \end{DoxyCompactList}\item 
+int \hyperlink{rsa__keygen_8c_a70316fafea19933566b46bfbd2396d79}{rsa\+\_\+plaintext\+\_\+to\+\_\+key} (char filename\mbox{[}$\,$\mbox{]}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a6202bb3ec0e257e04ba4ac9e9f6b92b0}{n}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a4e9841cad572137fe14a4d6462c4469a}{d}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a61aae5341c97210088a1480fa6bc2db4}{e}, int $\ast$key\+\_\+type)
+\item 
+int \hyperlink{rsa__keygen_8c_a3339d62b1fd42e2e763073b4ac738a3d}{rsa\+\_\+key\+\_\+to\+\_\+plaintext} (char filename\mbox{[}$\,$\mbox{]}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a6202bb3ec0e257e04ba4ac9e9f6b92b0}{n}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a4e9841cad572137fe14a4d6462c4469a}{d}, int key\+\_\+type)
+\end{DoxyCompactItemize}
+\subsection*{Zmienne}
+\begin{DoxyCompactItemize}
+\item 
+gmp\+\_\+randstate\+\_\+t \hyperlink{rsa__keygen_8c_a4e82e6259bc95a412d29543fda576dff}{generator}
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentacja definicji}
+\hypertarget{rsa__keygen_8c_a911891ff47c98a13a6f45006b6ca1079}{\index{rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}!N\+R\+\_\+\+T\+E\+S\+T\+S@{N\+R\+\_\+\+T\+E\+S\+T\+S}}
+\index{N\+R\+\_\+\+T\+E\+S\+T\+S@{N\+R\+\_\+\+T\+E\+S\+T\+S}!rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}}
+\subsubsection[{N\+R\+\_\+\+T\+E\+S\+T\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+R\+\_\+\+T\+E\+S\+T\+S~25  /$\ast$ liczba uzyc algorytmu Millera-\/Rabina $\ast$/}}\label{rsa__keygen_8c_a911891ff47c98a13a6f45006b6ca1079}
+\hypertarget{rsa__keygen_8c_a252aed5e043b7aa1c2d49e9bcbdc346a}{\index{rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}!P\+L\+A\+I\+N\+T\+E\+X\+T\+\_\+\+B\+A\+S\+E@{P\+L\+A\+I\+N\+T\+E\+X\+T\+\_\+\+B\+A\+S\+E}}
+\index{P\+L\+A\+I\+N\+T\+E\+X\+T\+\_\+\+B\+A\+S\+E@{P\+L\+A\+I\+N\+T\+E\+X\+T\+\_\+\+B\+A\+S\+E}!rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}}
+\subsubsection[{P\+L\+A\+I\+N\+T\+E\+X\+T\+\_\+\+B\+A\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+L\+A\+I\+N\+T\+E\+X\+T\+\_\+\+B\+A\+S\+E~16 /$\ast$ podstawa zapisu klucza w plaintekscie $\ast$/}}\label{rsa__keygen_8c_a252aed5e043b7aa1c2d49e9bcbdc346a}
+
+
+\subsection{Dokumentacja funkcji}
+\hypertarget{rsa__keygen_8c_a7a0574568c37d5b53c88eaa58248c6e7}{\index{rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}!initialize\+\_\+generator@{initialize\+\_\+generator}}
+\index{initialize\+\_\+generator@{initialize\+\_\+generator}!rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}}
+\subsubsection[{initialize\+\_\+generator}]{\setlength{\rightskip}{0pt plus 5cm}void initialize\+\_\+generator (
+\begin{DoxyParamCaption}
+\item[{int}]{type\+\_\+of\+\_\+generator, }
+\item[{unsigned int}]{seed}
+\end{DoxyParamCaption}
+)}}\label{rsa__keygen_8c_a7a0574568c37d5b53c88eaa58248c6e7}
+
+
+inicjalizacja generatora liczb losowych 
+
+
+\begin{DoxyParams}{Parametry}
+{\em type\+\_\+of\+\_\+generator} & wybor rodzaju generatora \\
+\hline
+\end{DoxyParams}
+\hypertarget{rsa__keygen_8c_a65e31341ef3618368041f5dcbc45350f}{\index{rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}!random\+\_\+prime@{random\+\_\+prime}}
+\index{random\+\_\+prime@{random\+\_\+prime}!rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}}
+\subsubsection[{random\+\_\+prime}]{\setlength{\rightskip}{0pt plus 5cm}void random\+\_\+prime (
+\begin{DoxyParamCaption}
+\item[{mpz\+\_\+t $\ast$}]{p, }
+\item[{int}]{bits}
+\end{DoxyParamCaption}
+)}}\label{rsa__keygen_8c_a65e31341ef3618368041f5dcbc45350f}
+Generowanie losowej liczby pierwszej.
+
+Ponieważ zdecydowana większość liczb pierwszych jest nieparzysta, to generujemy liczbę losową (n-\/1) bitową, po czym poddajemy ją przekształceniu x $\vert$-\/$>$ 2x+1 aby otrzymać nieparzystą liczbę n-\/bitową. 
+\begin{DoxyParams}{Parametry}
+{\em p} & wskaźnik na liczbę \\
+\hline
+{\em bits} & liczba bitów generowanej liczby pierwszej \\
+\hline
+\end{DoxyParams}
+\hypertarget{rsa__keygen_8c_a945b3edafa39e73a602c77d0cd05d169}{\index{rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}!random\+\_\+seed@{random\+\_\+seed}}
+\index{random\+\_\+seed@{random\+\_\+seed}!rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}}
+\subsubsection[{random\+\_\+seed}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int random\+\_\+seed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{rsa__keygen_8c_a945b3edafa39e73a602c77d0cd05d169}
+\hypertarget{rsa__keygen_8c_a3339d62b1fd42e2e763073b4ac738a3d}{\index{rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}!rsa\+\_\+key\+\_\+to\+\_\+plaintext@{rsa\+\_\+key\+\_\+to\+\_\+plaintext}}
+\index{rsa\+\_\+key\+\_\+to\+\_\+plaintext@{rsa\+\_\+key\+\_\+to\+\_\+plaintext}!rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}}
+\subsubsection[{rsa\+\_\+key\+\_\+to\+\_\+plaintext}]{\setlength{\rightskip}{0pt plus 5cm}int rsa\+\_\+key\+\_\+to\+\_\+plaintext (
+\begin{DoxyParamCaption}
+\item[{char}]{filename\mbox{[}$\,$\mbox{]}, }
+\item[{mpz\+\_\+t $\ast$}]{n, }
+\item[{mpz\+\_\+t $\ast$}]{d, }
+\item[{int}]{key\+\_\+type}
+\end{DoxyParamCaption}
+)}}\label{rsa__keygen_8c_a3339d62b1fd42e2e763073b4ac738a3d}
+\hypertarget{rsa__keygen_8c_a5655e81417558c58b49555329934891e}{\index{rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}!rsa\+\_\+keygen@{rsa\+\_\+keygen}}
+\index{rsa\+\_\+keygen@{rsa\+\_\+keygen}!rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}}
+\subsubsection[{rsa\+\_\+keygen}]{\setlength{\rightskip}{0pt plus 5cm}void rsa\+\_\+keygen (
+\begin{DoxyParamCaption}
+\item[{int}]{no\+\_\+bits, }
+\item[{mpz\+\_\+t $\ast$}]{n, }
+\item[{mpz\+\_\+t $\ast$}]{d, }
+\item[{mpz\+\_\+t $\ast$}]{e, }
+\item[{int}]{long\+\_\+public}
+\end{DoxyParamCaption}
+)}}\label{rsa__keygen_8c_a5655e81417558c58b49555329934891e}
+
+
+generowanie klucza R\+S\+A 
+
+Funkcja generuje klucz R\+S\+A o zadanej liczbie bitów. Zgodnie z założeniami R\+S\+A dostajemy (n,e) oraz (n,d). 
+\begin{DoxyParams}{Parametry}
+{\em no\+\_\+bits} & liczba bitów generowanego klucza \\
+\hline
+{\em n} & pierwszy składnik klucza \\
+\hline
+{\em e} & składnik e klucza publicznego \\
+\hline
+{\em d} & składnik d klucza prywatnego \\
+\hline
+{\em long\+\_\+public} & określa, czy wygenerować długi składnik e klucza publicznego \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Do zrobienia}
+\item[\hyperlink{todo__todo000004}{Do zrobienia}]Należy zadbać o to, aby zgodnie ze standardem obie liczby pierwsze były blisko siebie. \end{DoxyRefDesc}
+\hypertarget{rsa__keygen_8c_a70316fafea19933566b46bfbd2396d79}{\index{rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}!rsa\+\_\+plaintext\+\_\+to\+\_\+key@{rsa\+\_\+plaintext\+\_\+to\+\_\+key}}
+\index{rsa\+\_\+plaintext\+\_\+to\+\_\+key@{rsa\+\_\+plaintext\+\_\+to\+\_\+key}!rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}}
+\subsubsection[{rsa\+\_\+plaintext\+\_\+to\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}int rsa\+\_\+plaintext\+\_\+to\+\_\+key (
+\begin{DoxyParamCaption}
+\item[{char}]{filename\mbox{[}$\,$\mbox{]}, }
+\item[{mpz\+\_\+t $\ast$}]{n, }
+\item[{mpz\+\_\+t $\ast$}]{d, }
+\item[{mpz\+\_\+t $\ast$}]{e, }
+\item[{int $\ast$}]{key\+\_\+type}
+\end{DoxyParamCaption}
+)}}\label{rsa__keygen_8c_a70316fafea19933566b46bfbd2396d79}
+wczytanie klucza z pliku tekstowego
+
+Próbuje wczytać z pliku filename klucz R\+S\+A. Zwraca kod błędu 1, jeśli format pliku jest nieprawidłowy, oraz 2, jeśli plik nie istnieje bądź nie da się go otworzyć. 
+
+\subsection{Dokumentacja zmiennych}
+\hypertarget{rsa__keygen_8c_a4e82e6259bc95a412d29543fda576dff}{\index{rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}!generator@{generator}}
+\index{generator@{generator}!rsa\+\_\+keygen.\+c@{rsa\+\_\+keygen.\+c}}
+\subsubsection[{generator}]{\setlength{\rightskip}{0pt plus 5cm}gmp\+\_\+randstate\+\_\+t generator}}\label{rsa__keygen_8c_a4e82e6259bc95a412d29543fda576dff}

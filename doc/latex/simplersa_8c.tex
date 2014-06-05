@@ -1,0 +1,203 @@
+\hypertarget{simplersa_8c}{\section{Dokumentacja pliku simplersa.\+c}
+\label{simplersa_8c}\index{simplersa.\+c@{simplersa.\+c}}
+}
+
+
+Simple\+R\+S\+A, proste narzędzie do szyfrowania R\+S\+A.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$gmp.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}rsa\+\_\+keygen.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rsa\+\_\+decode.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$menu.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}main\+\_\+menu.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$locale.\+h$>$}\\*
+{\ttfamily \#include $<$form.\+h$>$}\\*
+{\ttfamily \#include $<$limits.\+h$>$}\\*
+{\ttfamily \#include $<$errno.\+h$>$}\\*
+{\ttfamily \#include $<$newt.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+\subsection*{Definicje}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{simplersa_8c_a25f003de16c08a4888b69f619d70f427}{A\+R\+R\+A\+Y\+\_\+\+S\+I\+Z\+E}(a)~(sizeof(a)/sizeof(a\mbox{[}0\mbox{]}))
+\end{DoxyCompactItemize}
+\subsection*{Funkcje}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{simplersa_8c_a35d494e8cf30930557ac449187f7c301}{file\+\_\+exists} (char $\ast$filename)
+\item 
+void \hyperlink{simplersa_8c_a469a98901396d884483782947989a20f}{show\+\_\+main\+\_\+screen} ()
+\item 
+void \hyperlink{simplersa_8c_ac76718b2972630c98182068206b30318}{handle\+\_\+key\+\_\+load\+\_\+error\+\_\+code} (int error\+\_\+code, int key\+\_\+type)
+\item 
+int \hyperlink{simplersa_8c_a1a749236584e9ec412cf06d14756a689}{handle\+\_\+key\+\_\+load} ()
+\item 
+int \hyperlink{simplersa_8c_a38ee2355624845de039a10114a106c50}{handle\+\_\+key\+\_\+generate} ()
+\item 
+int \hyperlink{simplersa_8c_a721971f42c7ab627a8b1aa3e911296b6}{handle\+\_\+cipher} (int deciphering)
+\item 
+int \hyperlink{simplersa_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Zmienne}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{simplersa_8c_a22e6b8f8937e747141c4e1cb9f98b764}{nazwy\+\_\+menu} \mbox{[}$\,$\mbox{]}
+\item 
+int \hyperlink{simplersa_8c_a49e66e1521c905da6c24c0f4ffeb1cf5}{key\+\_\+loaded} = 0
+\item 
+int \hyperlink{simplersa_8c_a186a79c4138bb7f296a3ed5269b6220a}{public\+\_\+key\+\_\+loaded} =0
+\item 
+int \hyperlink{simplersa_8c_adb7146e4344bc7c7aee4e25f5d856791}{private\+\_\+key\+\_\+loaded} = 0
+\item 
+mpz\+\_\+t \hyperlink{simplersa_8c_a6202bb3ec0e257e04ba4ac9e9f6b92b0}{n}
+\item 
+mpz\+\_\+t \hyperlink{simplersa_8c_a4e9841cad572137fe14a4d6462c4469a}{d}
+\item 
+mpz\+\_\+t \hyperlink{simplersa_8c_a61aae5341c97210088a1480fa6bc2db4}{e}
+\item 
+char $\ast$ \hyperlink{simplersa_8c_a643a9297f0e17474b3a3cdbf90f20f6b}{S\+P\+L\+A\+S\+H} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Opis szczegółowy}
+Simple\+R\+S\+A, proste narzędzie do szyfrowania R\+S\+A. 
+
+Projekt zaliczeniowy z przedmiotu Podstawy Programowania I\+I. \begin{DoxyAuthor}{Autor}
+Karol Piotrowski 
+
+Szczepan Lis 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Wersja}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Data}
+2014 
+\end{DoxyDate}
+
+
+\subsection{Dokumentacja definicji}
+\hypertarget{simplersa_8c_a25f003de16c08a4888b69f619d70f427}{\index{simplersa.\+c@{simplersa.\+c}!A\+R\+R\+A\+Y\+\_\+\+S\+I\+Z\+E@{A\+R\+R\+A\+Y\+\_\+\+S\+I\+Z\+E}}
+\index{A\+R\+R\+A\+Y\+\_\+\+S\+I\+Z\+E@{A\+R\+R\+A\+Y\+\_\+\+S\+I\+Z\+E}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{A\+R\+R\+A\+Y\+\_\+\+S\+I\+Z\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+R\+R\+A\+Y\+\_\+\+S\+I\+Z\+E(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~(sizeof(a)/sizeof(a\mbox{[}0\mbox{]}))}}\label{simplersa_8c_a25f003de16c08a4888b69f619d70f427}
+
+
+\subsection{Dokumentacja funkcji}
+\hypertarget{simplersa_8c_a35d494e8cf30930557ac449187f7c301}{\index{simplersa.\+c@{simplersa.\+c}!file\+\_\+exists@{file\+\_\+exists}}
+\index{file\+\_\+exists@{file\+\_\+exists}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{file\+\_\+exists}]{\setlength{\rightskip}{0pt plus 5cm}int file\+\_\+exists (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{simplersa_8c_a35d494e8cf30930557ac449187f7c301}
+\hypertarget{simplersa_8c_a721971f42c7ab627a8b1aa3e911296b6}{\index{simplersa.\+c@{simplersa.\+c}!handle\+\_\+cipher@{handle\+\_\+cipher}}
+\index{handle\+\_\+cipher@{handle\+\_\+cipher}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{handle\+\_\+cipher}]{\setlength{\rightskip}{0pt plus 5cm}int handle\+\_\+cipher (
+\begin{DoxyParamCaption}
+\item[{int}]{deciphering}
+\end{DoxyParamCaption}
+)}}\label{simplersa_8c_a721971f42c7ab627a8b1aa3e911296b6}
+Główna logika aplikacji w zakresie szyfrowania
+
+
+\begin{DoxyParams}{Parametry}
+{\em deciphering} & 0 dla szyfrowania, 1 dla deszyfrowania \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Do zrobienia}
+\item[\hyperlink{todo__todo000005}{Do zrobienia}]ulepszyć trochę file-\/dialog i umieścić go tutaj \end{DoxyRefDesc}
+\hypertarget{simplersa_8c_a38ee2355624845de039a10114a106c50}{\index{simplersa.\+c@{simplersa.\+c}!handle\+\_\+key\+\_\+generate@{handle\+\_\+key\+\_\+generate}}
+\index{handle\+\_\+key\+\_\+generate@{handle\+\_\+key\+\_\+generate}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{handle\+\_\+key\+\_\+generate}]{\setlength{\rightskip}{0pt plus 5cm}int handle\+\_\+key\+\_\+generate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{simplersa_8c_a38ee2355624845de039a10114a106c50}
+\hypertarget{simplersa_8c_a1a749236584e9ec412cf06d14756a689}{\index{simplersa.\+c@{simplersa.\+c}!handle\+\_\+key\+\_\+load@{handle\+\_\+key\+\_\+load}}
+\index{handle\+\_\+key\+\_\+load@{handle\+\_\+key\+\_\+load}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{handle\+\_\+key\+\_\+load}]{\setlength{\rightskip}{0pt plus 5cm}int handle\+\_\+key\+\_\+load (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{simplersa_8c_a1a749236584e9ec412cf06d14756a689}
+\hypertarget{simplersa_8c_ac76718b2972630c98182068206b30318}{\index{simplersa.\+c@{simplersa.\+c}!handle\+\_\+key\+\_\+load\+\_\+error\+\_\+code@{handle\+\_\+key\+\_\+load\+\_\+error\+\_\+code}}
+\index{handle\+\_\+key\+\_\+load\+\_\+error\+\_\+code@{handle\+\_\+key\+\_\+load\+\_\+error\+\_\+code}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{handle\+\_\+key\+\_\+load\+\_\+error\+\_\+code}]{\setlength{\rightskip}{0pt plus 5cm}void handle\+\_\+key\+\_\+load\+\_\+error\+\_\+code (
+\begin{DoxyParamCaption}
+\item[{int}]{error\+\_\+code, }
+\item[{int}]{key\+\_\+type}
+\end{DoxyParamCaption}
+)}}\label{simplersa_8c_ac76718b2972630c98182068206b30318}
+\hypertarget{simplersa_8c_a0ddf1224851353fc92bfbff6f499fa97}{\index{simplersa.\+c@{simplersa.\+c}!main@{main}}
+\index{main@{main}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{simplersa_8c_a0ddf1224851353fc92bfbff6f499fa97}
+\hypertarget{simplersa_8c_a469a98901396d884483782947989a20f}{\index{simplersa.\+c@{simplersa.\+c}!show\+\_\+main\+\_\+screen@{show\+\_\+main\+\_\+screen}}
+\index{show\+\_\+main\+\_\+screen@{show\+\_\+main\+\_\+screen}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{show\+\_\+main\+\_\+screen}]{\setlength{\rightskip}{0pt plus 5cm}void show\+\_\+main\+\_\+screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{simplersa_8c_a469a98901396d884483782947989a20f}
+wyświetlanie informacji o programie na root window
+
+Ze względu na doskonałą obsługę stringów w języku C oraz fakt, że toolkit N\+E\+W\+T nie posiada żadnego wyświetlania na ekranie przyjmującego string formatujący, wygląda to dosyć podejrzanie, ale z pewnością działa. 
+
+\subsection{Dokumentacja zmiennych}
+\hypertarget{simplersa_8c_a4e9841cad572137fe14a4d6462c4469a}{\index{simplersa.\+c@{simplersa.\+c}!d@{d}}
+\index{d@{d}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{d}]{\setlength{\rightskip}{0pt plus 5cm}mpz\+\_\+t d}}\label{simplersa_8c_a4e9841cad572137fe14a4d6462c4469a}
+\hypertarget{simplersa_8c_a61aae5341c97210088a1480fa6bc2db4}{\index{simplersa.\+c@{simplersa.\+c}!e@{e}}
+\index{e@{e}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{e}]{\setlength{\rightskip}{0pt plus 5cm}mpz\+\_\+t e}}\label{simplersa_8c_a61aae5341c97210088a1480fa6bc2db4}
+\hypertarget{simplersa_8c_a49e66e1521c905da6c24c0f4ffeb1cf5}{\index{simplersa.\+c@{simplersa.\+c}!key\+\_\+loaded@{key\+\_\+loaded}}
+\index{key\+\_\+loaded@{key\+\_\+loaded}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{key\+\_\+loaded}]{\setlength{\rightskip}{0pt plus 5cm}int key\+\_\+loaded = 0}}\label{simplersa_8c_a49e66e1521c905da6c24c0f4ffeb1cf5}
+\hypertarget{simplersa_8c_a6202bb3ec0e257e04ba4ac9e9f6b92b0}{\index{simplersa.\+c@{simplersa.\+c}!n@{n}}
+\index{n@{n}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{n}]{\setlength{\rightskip}{0pt plus 5cm}mpz\+\_\+t n}}\label{simplersa_8c_a6202bb3ec0e257e04ba4ac9e9f6b92b0}
+\hypertarget{simplersa_8c_a22e6b8f8937e747141c4e1cb9f98b764}{\index{simplersa.\+c@{simplersa.\+c}!nazwy\+\_\+menu@{nazwy\+\_\+menu}}
+\index{nazwy\+\_\+menu@{nazwy\+\_\+menu}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{nazwy\+\_\+menu}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ nazwy\+\_\+menu\mbox{[}$\,$\mbox{]}}}\label{simplersa_8c_a22e6b8f8937e747141c4e1cb9f98b764}
+{\bfseries Wartość początkowa\+:}
+\begin{DoxyCode}
+= \{
+  \textcolor{stringliteral}{"Generuj nowy klucz RSA"},
+  \textcolor{stringliteral}{"Wczytaj klucz z pliku"},
+  \textcolor{stringliteral}{"Szyfruj plik"},
+  \textcolor{stringliteral}{"Deszyfruj plik"},
+  \textcolor{stringliteral}{"Wyjście"}
+\}
+\end{DoxyCode}
+\hypertarget{simplersa_8c_adb7146e4344bc7c7aee4e25f5d856791}{\index{simplersa.\+c@{simplersa.\+c}!private\+\_\+key\+\_\+loaded@{private\+\_\+key\+\_\+loaded}}
+\index{private\+\_\+key\+\_\+loaded@{private\+\_\+key\+\_\+loaded}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{private\+\_\+key\+\_\+loaded}]{\setlength{\rightskip}{0pt plus 5cm}int private\+\_\+key\+\_\+loaded = 0}}\label{simplersa_8c_adb7146e4344bc7c7aee4e25f5d856791}
+\hypertarget{simplersa_8c_a186a79c4138bb7f296a3ed5269b6220a}{\index{simplersa.\+c@{simplersa.\+c}!public\+\_\+key\+\_\+loaded@{public\+\_\+key\+\_\+loaded}}
+\index{public\+\_\+key\+\_\+loaded@{public\+\_\+key\+\_\+loaded}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{public\+\_\+key\+\_\+loaded}]{\setlength{\rightskip}{0pt plus 5cm}int public\+\_\+key\+\_\+loaded =0}}\label{simplersa_8c_a186a79c4138bb7f296a3ed5269b6220a}
+\hypertarget{simplersa_8c_a643a9297f0e17474b3a3cdbf90f20f6b}{\index{simplersa.\+c@{simplersa.\+c}!S\+P\+L\+A\+S\+H@{S\+P\+L\+A\+S\+H}}
+\index{S\+P\+L\+A\+S\+H@{S\+P\+L\+A\+S\+H}!simplersa.\+c@{simplersa.\+c}}
+\subsubsection[{S\+P\+L\+A\+S\+H}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ S\+P\+L\+A\+S\+H\mbox{[}$\,$\mbox{]}}}\label{simplersa_8c_a643a9297f0e17474b3a3cdbf90f20f6b}
+{\bfseries Wartość początkowa\+:}
+\begin{DoxyCode}
+= \{
+  \textcolor{stringliteral}{" \_\_\_\_  \_                 \_      \_\_\_\_  \_\_\_\_    \_"},
+  \textcolor{stringliteral}{"/ \_\_\_|(\_)\_ \_\_ \_\_\_  \_ \_\_ | | \_\_\_|  \_ \(\backslash\)\(\backslash\)/ \_\_\_|  / \(\backslash\)\(\backslash\)"},
+  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)\_\_\_ \(\backslash\)\(\backslash\)| | '\_ ` \_ \(\backslash\)\(\backslash\)| '\_ \(\backslash\)\(\backslash\)| |/ \_ \(\backslash\)\(\backslash\) |\_) \(\backslash\)\(\backslash\)\_\_\_ \(\backslash\)\(\backslash\) / \_ \(\backslash\)\(\backslash\)"},
+  \textcolor{stringliteral}{" \_\_\_) | | | | | | | |\_) | |  \_\_/  \_ < \_\_\_) / \_\_\_ \(\backslash\)\(\backslash\)"},
+  \textcolor{stringliteral}{"|\_\_\_\_/|\_|\_| |\_| |\_| .\_\_/|\_|\(\backslash\)\(\backslash\)\_\_\_|\_| \(\backslash\)\(\backslash\)\_\(\backslash\)\(\backslash\)\_\_\_\_/\_/   \(\backslash\)\(\backslash\)\_\(\backslash\)\(\backslash\)"},
+  \textcolor{stringliteral}{"                  |\_|"}
+\}
+\end{DoxyCode}

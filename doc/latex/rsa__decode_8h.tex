@@ -1,0 +1,81 @@
+\hypertarget{rsa__decode_8h}{\section{Dokumentacja pliku rsa\+\_\+decode.\+h}
+\label{rsa__decode_8h}\index{rsa\+\_\+decode.\+h@{rsa\+\_\+decode.\+h}}
+}
+\subsection*{Funkcje}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{rsa__decode_8h_a104ba9e7109ef4145b66b677c07db5da}{rsa\+\_\+encode\+\_\+file} (F\+I\+L\+E $\ast$input\+\_\+file, F\+I\+L\+E $\ast$output\+\_\+file, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a6202bb3ec0e257e04ba4ac9e9f6b92b0}{n}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a61aae5341c97210088a1480fa6bc2db4}{e}, int block\+\_\+size, int out\+\_\+block\+\_\+size, int verbose)
+\item 
+void \hyperlink{rsa__decode_8h_a0d046beaadebe2a78d295653b0496ff2}{rsa\+\_\+decode\+\_\+file} (F\+I\+L\+E $\ast$input\+\_\+file, F\+I\+L\+E $\ast$output\+\_\+file, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a6202bb3ec0e257e04ba4ac9e9f6b92b0}{n}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a4e9841cad572137fe14a4d6462c4469a}{d}, int block\+\_\+size, int out\+\_\+block\+\_\+size, int verbose)
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentacja funkcji}
+\hypertarget{rsa__decode_8h_a0d046beaadebe2a78d295653b0496ff2}{\index{rsa\+\_\+decode.\+h@{rsa\+\_\+decode.\+h}!rsa\+\_\+decode\+\_\+file@{rsa\+\_\+decode\+\_\+file}}
+\index{rsa\+\_\+decode\+\_\+file@{rsa\+\_\+decode\+\_\+file}!rsa\+\_\+decode.\+h@{rsa\+\_\+decode.\+h}}
+\subsubsection[{rsa\+\_\+decode\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}void rsa\+\_\+decode\+\_\+file (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{input\+\_\+file, }
+\item[{F\+I\+L\+E $\ast$}]{output\+\_\+file, }
+\item[{mpz\+\_\+t $\ast$}]{n, }
+\item[{mpz\+\_\+t $\ast$}]{d, }
+\item[{int}]{block\+\_\+size, }
+\item[{int}]{out\+\_\+block\+\_\+size, }
+\item[{int}]{verbose}
+\end{DoxyParamCaption}
+)}}\label{rsa__decode_8h_a0d046beaadebe2a78d295653b0496ff2}
+Dekodowanie pliku binarnego zgodnie z algorytmem R\+S\+A.
+
+Funkcja ta pobiera z zakodowanego strumienia input\+\_\+file bloki znaków o wielkości określonej przez block\+\_\+size, koduje je jako liczbę całkowitą w której kolejne znaki są cyframi w jej rozwinięciu przy podstawie 256. Ze względu na sposób działania funkcji bibliotecznej fread() musimy wprost sprawdzać, w którym miejscu pliku jesteśmy. 
+\begin{DoxyParams}{Parametry}
+{\em input\+\_\+file} & strumień wejściowy \\
+\hline
+{\em output\+\_\+file} & strumień wyjściowy \\
+\hline
+{\em n} & część klucza (n,d) \\
+\hline
+{\em d} & prywatna część klucza \\
+\hline
+{\em block\+\_\+size} & wielkość bloku wejściowego w bajtach \\
+\hline
+{\em out\+\_\+block\+\_\+size} & wielkość bloku wyjściowego w bajtach \\
+\hline
+{\em verbose} & czy pokazywać progress bar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Do zrobienia}
+\item[\hyperlink{todo__todo000003}{Do zrobienia}]zamienić ręczne rzeźbienie z konwersją blokową na mpz\+\_\+import \end{DoxyRefDesc}
+\hypertarget{rsa__decode_8h_a104ba9e7109ef4145b66b677c07db5da}{\index{rsa\+\_\+decode.\+h@{rsa\+\_\+decode.\+h}!rsa\+\_\+encode\+\_\+file@{rsa\+\_\+encode\+\_\+file}}
+\index{rsa\+\_\+encode\+\_\+file@{rsa\+\_\+encode\+\_\+file}!rsa\+\_\+decode.\+h@{rsa\+\_\+decode.\+h}}
+\subsubsection[{rsa\+\_\+encode\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}void rsa\+\_\+encode\+\_\+file (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{input\+\_\+file, }
+\item[{F\+I\+L\+E $\ast$}]{output\+\_\+file, }
+\item[{mpz\+\_\+t $\ast$}]{n, }
+\item[{mpz\+\_\+t $\ast$}]{e, }
+\item[{int}]{block\+\_\+size, }
+\item[{int}]{out\+\_\+block\+\_\+size, }
+\item[{int}]{verbose}
+\end{DoxyParamCaption}
+)}}\label{rsa__decode_8h_a104ba9e7109ef4145b66b677c07db5da}
+kodowanie pliku binarnego zgodnie z algorytmem R\+S\+A.
+
+Funkcja ta pobiera ze strumienia input\+\_\+file bloki znaków o wielkości określonej przez block\+\_\+size, koduje je jako liczbę całkowitą w której kolejne znaki są cyframi w jej rozwinięciu przy podstawie 256. 
+\begin{DoxyParams}{Parametry}
+{\em input\+\_\+file} & strumień wejściowy \\
+\hline
+{\em output\+\_\+file} & strumień wyjściowy \\
+\hline
+{\em n} & część klucza (n,e) \\
+\hline
+{\em e} & publiczna część klucza \\
+\hline
+{\em block\+\_\+size} & wielkość bloku wejściowego w bajtach \\
+\hline
+{\em out\+\_\+block\+\_\+size} & wielkość bloku wyjściowego w bajtach \\
+\hline
+{\em verbose} & czy pokazywać progress bar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Do zrobienia}
+\item[\hyperlink{todo__todo000002}{Do zrobienia}]zamienić ręczne rzeźbienie z konwersją blokową na mpz\+\_\+import \end{DoxyRefDesc}

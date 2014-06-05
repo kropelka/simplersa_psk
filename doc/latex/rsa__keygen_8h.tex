@@ -1,0 +1,69 @@
+\hypertarget{rsa__keygen_8h}{\section{Dokumentacja pliku rsa\+\_\+keygen.\+h}
+\label{rsa__keygen_8h}\index{rsa\+\_\+keygen.\+h@{rsa\+\_\+keygen.\+h}}
+}
+\subsection*{Funkcje}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{rsa__keygen_8h_a85616a49cb19f839340943ee844c508e}{rsa\+\_\+keygen} (int no\+\_\+bits, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a6202bb3ec0e257e04ba4ac9e9f6b92b0}{n}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a4e9841cad572137fe14a4d6462c4469a}{d}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a61aae5341c97210088a1480fa6bc2db4}{e}, int long\+\_\+public)
+\begin{DoxyCompactList}\small\item\em generowanie klucza R\+S\+A \end{DoxyCompactList}\item 
+int \hyperlink{rsa__keygen_8h_a3339d62b1fd42e2e763073b4ac738a3d}{rsa\+\_\+key\+\_\+to\+\_\+plaintext} (char filename\mbox{[}$\,$\mbox{]}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a6202bb3ec0e257e04ba4ac9e9f6b92b0}{n}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a4e9841cad572137fe14a4d6462c4469a}{d}, int key\+\_\+type)
+\item 
+int \hyperlink{rsa__keygen_8h_a70316fafea19933566b46bfbd2396d79}{rsa\+\_\+plaintext\+\_\+to\+\_\+key} (char filename\mbox{[}$\,$\mbox{]}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a6202bb3ec0e257e04ba4ac9e9f6b92b0}{n}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a4e9841cad572137fe14a4d6462c4469a}{d}, mpz\+\_\+t $\ast$\hyperlink{simplersa_8c_a61aae5341c97210088a1480fa6bc2db4}{e}, int $\ast$key\+\_\+type)
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentacja funkcji}
+\hypertarget{rsa__keygen_8h_a3339d62b1fd42e2e763073b4ac738a3d}{\index{rsa\+\_\+keygen.\+h@{rsa\+\_\+keygen.\+h}!rsa\+\_\+key\+\_\+to\+\_\+plaintext@{rsa\+\_\+key\+\_\+to\+\_\+plaintext}}
+\index{rsa\+\_\+key\+\_\+to\+\_\+plaintext@{rsa\+\_\+key\+\_\+to\+\_\+plaintext}!rsa\+\_\+keygen.\+h@{rsa\+\_\+keygen.\+h}}
+\subsubsection[{rsa\+\_\+key\+\_\+to\+\_\+plaintext}]{\setlength{\rightskip}{0pt plus 5cm}int rsa\+\_\+key\+\_\+to\+\_\+plaintext (
+\begin{DoxyParamCaption}
+\item[{char}]{filename\mbox{[}$\,$\mbox{]}, }
+\item[{mpz\+\_\+t $\ast$}]{n, }
+\item[{mpz\+\_\+t $\ast$}]{d, }
+\item[{int}]{key\+\_\+type}
+\end{DoxyParamCaption}
+)}}\label{rsa__keygen_8h_a3339d62b1fd42e2e763073b4ac738a3d}
+\hypertarget{rsa__keygen_8h_a85616a49cb19f839340943ee844c508e}{\index{rsa\+\_\+keygen.\+h@{rsa\+\_\+keygen.\+h}!rsa\+\_\+keygen@{rsa\+\_\+keygen}}
+\index{rsa\+\_\+keygen@{rsa\+\_\+keygen}!rsa\+\_\+keygen.\+h@{rsa\+\_\+keygen.\+h}}
+\subsubsection[{rsa\+\_\+keygen}]{\setlength{\rightskip}{0pt plus 5cm}int rsa\+\_\+keygen (
+\begin{DoxyParamCaption}
+\item[{int}]{no\+\_\+bits, }
+\item[{mpz\+\_\+t $\ast$}]{n, }
+\item[{mpz\+\_\+t $\ast$}]{d, }
+\item[{mpz\+\_\+t $\ast$}]{e, }
+\item[{int}]{long\+\_\+public}
+\end{DoxyParamCaption}
+)}}\label{rsa__keygen_8h_a85616a49cb19f839340943ee844c508e}
+
+
+generowanie klucza R\+S\+A 
+
+Funkcja generuje klucz R\+S\+A o zadanej liczbie bitów. Zgodnie z założeniami R\+S\+A dostajemy (n,e) oraz (n,d). 
+\begin{DoxyParams}{Parametry}
+{\em no\+\_\+bits} & liczba bitów generowanego klucza \\
+\hline
+{\em n} & pierwszy składnik klucza \\
+\hline
+{\em e} & składnik e klucza publicznego \\
+\hline
+{\em d} & składnik d klucza prywatnego \\
+\hline
+{\em long\+\_\+public} & określa, czy wygenerować długi składnik e klucza publicznego \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Do zrobienia}
+\item[\hyperlink{todo__todo000004}{Do zrobienia}]Należy zadbać o to, aby zgodnie ze standardem obie liczby pierwsze były blisko siebie. \end{DoxyRefDesc}
+\hypertarget{rsa__keygen_8h_a70316fafea19933566b46bfbd2396d79}{\index{rsa\+\_\+keygen.\+h@{rsa\+\_\+keygen.\+h}!rsa\+\_\+plaintext\+\_\+to\+\_\+key@{rsa\+\_\+plaintext\+\_\+to\+\_\+key}}
+\index{rsa\+\_\+plaintext\+\_\+to\+\_\+key@{rsa\+\_\+plaintext\+\_\+to\+\_\+key}!rsa\+\_\+keygen.\+h@{rsa\+\_\+keygen.\+h}}
+\subsubsection[{rsa\+\_\+plaintext\+\_\+to\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}int rsa\+\_\+plaintext\+\_\+to\+\_\+key (
+\begin{DoxyParamCaption}
+\item[{char}]{filename\mbox{[}$\,$\mbox{]}, }
+\item[{mpz\+\_\+t $\ast$}]{n, }
+\item[{mpz\+\_\+t $\ast$}]{d, }
+\item[{mpz\+\_\+t $\ast$}]{e, }
+\item[{int $\ast$}]{key\+\_\+type}
+\end{DoxyParamCaption}
+)}}\label{rsa__keygen_8h_a70316fafea19933566b46bfbd2396d79}
+wczytanie klucza z pliku tekstowego
+
+Próbuje wczytać z pliku filename klucz R\+S\+A. Zwraca kod błędu 1, jeśli format pliku jest nieprawidłowy, oraz 2, jeśli plik nie istnieje bądź nie da się go otworzyć. 
