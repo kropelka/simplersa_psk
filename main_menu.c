@@ -20,39 +20,39 @@
  *      przelecieć katalog, do którego wchodzimy
  */
 void filename_dialog(char* title, char** selected_file, char* directory) {
-	struct dirent **namelist;
-	int list_size, i;
-	
-	newtCenteredWindow(20, 20, directory);
-	newtComponent directory_listing = newtListbox(0, 0, 20, NEWT_FLAG_RETURNEXIT);
-	newtComponent directory_form = newtForm(NULL, NULL, 0);
-	newtFormAddComponent(directory_form, directory_listing);
+  struct dirent **namelist;
+  int list_size, i;
+  
+  newtCenteredWindow(20, 20, directory);
+  newtComponent directory_listing = newtListbox(0, 0, 20, NEWT_FLAG_RETURNEXIT);
+  newtComponent directory_form = newtForm(NULL, NULL, 0);
+  newtFormAddComponent(directory_form, directory_listing);
   list_size = scandir(directory, &namelist, 0, alphasort);
-	for(i=0; i < list_size; ++i) {
-		newtListboxAppendEntry(directory_listing, namelist[i]->d_name, namelist[i]);
-	};
-	newtListboxSetWidth(directory_listing, 20);  // do poprawki
-	newtRunForm(directory_form);
-	if( ((struct dirent*) newtListboxGetCurrent(directory_listing))->d_type == DT_DIR) {
-		/* jeżeli wybrano katalog, to zrób stringa z odpowiednią ścieżką i wywołaj rekurencyjnie filename_dialog */
-		char* new_dir = malloc(strlen(directory) + strlen(((struct dirent*) newtListboxGetCurrent(directory_listing))->d_name) + 3);
-		sprintf(new_dir, "%s/%s", directory, ((struct dirent*) newtListboxGetCurrent(directory_listing))->d_name);
-		newtPushHelpLine(new_dir);
-		filename_dialog(title, selected_file, new_dir);
-			free(new_dir);
-	} else {
-		/* jeżeli wybrano plik, to koniec przetwarzania, trzeba tylko przerobić scieżkę na absolutną za pomocą realpath() */
-		char* path_to_process = (char*) malloc(strlen( ( (struct dirent*) newtListboxGetCurrent(directory_listing) )->d_name ) + 1) ;
-		sprintf(path_to_process, "%s/%s", directory, ((struct dirent*) newtListboxGetCurrent(directory_listing))->d_name);
-		*selected_file = (char*) malloc(PATH_MAX);
-		realpath(path_to_process, *selected_file);
-		free(path_to_process);
-		newtPushHelpLine(*selected_file);
-	};
-	free(namelist);
-	newtFormDestroy(directory_form);
-	newtPopWindow();
-	newtRefresh();
+  for(i=0; i < list_size; ++i) {
+    newtListboxAppendEntry(directory_listing, namelist[i]->d_name, namelist[i]);
+  };
+  newtListboxSetWidth(directory_listing, 20);  // do poprawki
+  newtRunForm(directory_form);
+  if( ((struct dirent*) newtListboxGetCurrent(directory_listing))->d_type == DT_DIR) {
+    /* jeżeli wybrano katalog, to zrób stringa z odpowiednią ścieżką i wywołaj rekurencyjnie filename_dialog */
+    char* new_dir = malloc(strlen(directory) + strlen(((struct dirent*) newtListboxGetCurrent(directory_listing))->d_name) + 3);
+    sprintf(new_dir, "%s/%s", directory, ((struct dirent*) newtListboxGetCurrent(directory_listing))->d_name);
+    newtPushHelpLine(new_dir);
+    filename_dialog(title, selected_file, new_dir);
+      free(new_dir);
+  } else {
+    /* jeżeli wybrano plik, to koniec przetwarzania, trzeba tylko przerobić scieżkę na absolutną za pomocą realpath() */
+    char* path_to_process = (char*) malloc(strlen( ( (struct dirent*) newtListboxGetCurrent(directory_listing) )->d_name ) + 1) ;
+    sprintf(path_to_process, "%s/%s", directory, ((struct dirent*) newtListboxGetCurrent(directory_listing))->d_name);
+    *selected_file = (char*) malloc(PATH_MAX);
+    realpath(path_to_process, *selected_file);
+    free(path_to_process);
+    newtPushHelpLine(*selected_file);
+  };
+  free(namelist);
+  newtFormDestroy(directory_form);
+  newtPopWindow();
+  newtRefresh();
 }
 
 /*! menu pojedynczego wyboru
