@@ -1,6 +1,7 @@
-SimpleRSA, projekt zaliczeniowy z przedmiotu Podstawy Programowania II na 
+SimpleRSA
+=========
+Projekt zaliczeniowy z przedmiotu Podstawy Programowania II na 
 Politechnice Świętokrzyskiej.
-=======
 
 Aby skompilować projekt potrzebna jest biblioteka gmp do obsługi liczb
 dowolnej precyzji, oraz newt do tekstowego interfejsu graficznego. 
