@@ -2,7 +2,6 @@
 #include <gmp.h>
 #include <fcntl.h>
 #include <time.h>
-#include <curses.h>
 
 #define NR_TESTS 25  /* liczba uzyc algorytmu Millera-Rabina */
          /* do sprawdzenia pierwszosci wygenerowanej */
