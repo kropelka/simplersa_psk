@@ -10,17 +10,13 @@
 #include <stdio.h>
 #include <gmp.h>
 #include <unistd.h>
-#include <math.h>
 #include <stdlib.h>
 #include "rsa_keygen.h"
 #include "rsa_decode.h"
-#include <menu.h>
 #include "main_menu.h"
 #include <locale.h>
-#include <form.h>
 #include <limits.h>
 #include <errno.h>
-#include <math.h>
 #include <newt.h>
 #include <math.h>
 #include <string.h>

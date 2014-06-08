@@ -36,7 +36,7 @@ long int file_size(FILE* file) {
  */
 void rsa_encode_file(FILE* input_file, FILE* output_file, mpz_t* n, mpz_t* e, int block_size, int out_block_size, int verbose) {
   clock_t encode_timer;
-  float curr_time;
+  float curr_time = 0;
   long int input_file_size = file_size(input_file);
   long int size_progress = 0;
   mpz_t message, result, rem, power, pot, temp;
@@ -142,7 +142,7 @@ void rsa_encode_file(FILE* input_file, FILE* output_file, mpz_t* n, mpz_t* e, in
 void rsa_decode_file(FILE* input_file, FILE* output_file, mpz_t* n, mpz_t* d, int block_size, int out_block_size, int verbose) {
   long int input_file_size = file_size(input_file);
   clock_t encode_timer;
-  float curr_time;
+  float curr_time = 0;
   long int size_progress = 0;
   mpz_t message, result, remainder, power, pot, temp;
   mpz_init(message);

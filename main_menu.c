@@ -45,8 +45,7 @@ void filename_dialog(char* title, char** selected_file, char* directory) {
     char* path_to_process = (char*) malloc(strlen( ( (struct dirent*) newtListboxGetCurrent(directory_listing) )->d_name ) + 1) ;
     sprintf(path_to_process, "%s/%s", directory, ((struct dirent*) newtListboxGetCurrent(directory_listing))->d_name);
     *selected_file = (char*) malloc(PATH_MAX);
-    realpath(path_to_process, *selected_file);
-    free(path_to_process);
+    *selected_file = realpath(path_to_process, NULL);
     newtPushHelpLine(*selected_file);
   };
   free(namelist);
