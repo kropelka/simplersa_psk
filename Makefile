@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -std=c99 -O2 -I/usr/local/include -L/usr/local/lib -D_BSD_SOURCE -g
+CFLAGS=-Wall -std=c99 -O2 -I/usr/local/include -L/usr/local/lib -D_BSD_SOURCE
 LDLIBS=-lm -lgmp -lnewt
 
 all: simplersa

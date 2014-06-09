@@ -77,14 +77,14 @@ void show_main_screen() {
   if(public_key_loaded) {
     x = mpz_sizeinbase(e, 2);
     y = mpz_sizeinbase(n, 2);
-    helpline = malloc(strlen(helpline_1) + strlen(helpline_3) + strlen(helpline_5) + log10(x) + log10(y) + 3);
+    helpline = malloc(strlen(helpline_1) + strlen(helpline_3) + strlen(helpline_5) + log10(x) + log10(y) + 5);
     sprintf(helpline, "%s%d%s%d%s",helpline_1, y, helpline_3, x,helpline_5 );
     newtPushHelpLine(helpline);
     free(helpline);
   } else if(private_key_loaded) {
     x = mpz_sizeinbase(d, 2);
     y = mpz_sizeinbase(n, 2);
-    helpline = malloc(strlen(helpline_2) + strlen(helpline_4) + strlen(helpline_5) + log10(x) + log10(y) + 3);
+    helpline = malloc(strlen(helpline_2) + strlen(helpline_4) + strlen(helpline_5) + log10(x) + log10(y) + 5);
     sprintf(helpline, "%s%d%s%d%s",helpline_2, y, helpline_4, x,helpline_5 );
     newtPushHelpLine(helpline);
     free(helpline);

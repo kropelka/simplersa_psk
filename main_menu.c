@@ -5,7 +5,7 @@
 #include <dirent.h>
 #include <stdlib.h>
 #ifndef PATH_MAX
-#define PATH_MAX 255
+#define PATH_MAX 32768
 #endif
 
 /*! proste okno do wyboru pliku do wczytania
@@ -40,15 +40,16 @@ void filename_dialog(char* title, char** selected_file, char* directory) {
     newtPushHelpLine(new_dir);
     filename_dialog(title, selected_file, new_dir);
       free(new_dir);
+      free(namelist);
   } else {
     /* jeżeli wybrano plik, to koniec przetwarzania, trzeba tylko przerobić scieżkę na absolutną za pomocą realpath() */
-    char* path_to_process = (char*) malloc(strlen( ( (struct dirent*) newtListboxGetCurrent(directory_listing) )->d_name ) + 1) ;
-    sprintf(path_to_process, "%s/%s", directory, ((struct dirent*) newtListboxGetCurrent(directory_listing))->d_name);
-    *selected_file = (char*) malloc(PATH_MAX);
+//    char* path_to_process = (char*) malloc(strlen( ( (struct dirent*) newtListboxGetCurrent(directory_listing) )->d_name ) + 5) ;
+    char* path_to_process = (char*) malloc(PATH_MAX+1);
+    snprintf(path_to_process, PATH_MAX, "%s/%s", directory, ((struct dirent*) newtListboxGetCurrent(directory_listing))->d_name);
+    *selected_file = (char*) malloc(PATH_MAX+1);
     *selected_file = realpath(path_to_process, NULL);
-    newtPushHelpLine(*selected_file);
+    free(namelist);
   };
-  free(namelist);
   newtFormDestroy(directory_form);
   newtPopWindow();
   newtRefresh();

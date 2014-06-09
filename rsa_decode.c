@@ -39,7 +39,7 @@ void rsa_encode_file(FILE* input_file, FILE* output_file, mpz_t* n, mpz_t* e, in
   float curr_time = 0;
   long int input_file_size = file_size(input_file);
   long int size_progress = 0;
-  mpz_t message, result, rem, power, pot, temp;
+  mpz_t message, result, power, pot, temp;
   mpz_init(message);
   mpz_init(result);
   mpz_init(power);
@@ -104,7 +104,7 @@ void rsa_encode_file(FILE* input_file, FILE* output_file, mpz_t* n, mpz_t* e, in
       out_block[j] = (unsigned char) block_size;
     fwrite(out_block, 1, out_block_size, output_file);
   };
-  char* summary_msg = malloc(strlen("Kodowanie zakończyło się sukcesem po ") + log10((long)(curr_time + 0.5)) + strlen("sekundach.") + 2 );
+  char* summary_msg = malloc(strlen("Kodowanie zakończyło się sukcesem po ") + log10((long)(curr_time + 0.5)) + strlen("sekundach.") + 5 );
   sprintf(summary_msg, "Kodowanie zakończyło się sukcesem po %ld sekundach.", (long)(curr_time + 0.5));
   newtWinMessage("","OK",summary_msg);
   free(summary_msg);
